@@ -89,8 +89,7 @@ export default async function Home() {
           )}
         </div>
       </section>
-      <Faq/>
-      <Footer/>
+      
       {user && products.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 pb-20">
           <div className="flex items-center justify-between mb-6">
@@ -123,6 +122,8 @@ export default async function Home() {
           </div>
         </section>
       )}
+      <Faq />
+      <Footer />
     </main>
   );
 }
