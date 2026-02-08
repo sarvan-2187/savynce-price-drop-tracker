@@ -50,14 +50,17 @@ export async function POST() {
                 const newPrice = parseFloat(productData.currentPrice);
                 const oldPrice = parseFloat(product.current_price);
 
-                await supabase.from("products").update({
+                await supabase
+                .from("products")
+                .update({
                     current_price: newPrice,
                     currency: productData.currencyCode || product.currency,
                     name: productData.productName || product.name,
                     image_url: productData.productImageUrl || product.image_url,
                     updated_at: new Date().toISOString(),
-                });
+                })
                 .eq("id", product.id);
+
                 if (newPrice !== oldPrice) {
                     await supabase.from("price_history").insert({
                         product_id: product.id,
