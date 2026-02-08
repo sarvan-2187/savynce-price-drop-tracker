@@ -8,6 +8,12 @@ import { redirect } from "next/navigation";
 export async function addProduct(formData: FormData) {
   const url = formData.get("url");
 
+  if (!url || typeof url !== "string") {
+    return { error: "Invalid URL" };
+  }
+
+  const productData = await scrapeProduct(url);
+
   if (!url) {
     return { error: "URL is required" };
   }
