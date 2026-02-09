@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-300 text-gray-400">
+        <footer className="bg-white border-t-2 border-gray-200">
             <div className="max-w-6xl mx-auto px-6 py-12">
 
                 {/* Top Section */}
@@ -13,17 +13,17 @@ const Footer = () => {
 
                     {/* Brand */}
                     <div className="text-center md:text-left">
-                        <h3 className="text-black text-lg font-semibold">
+                        <h3 className="text-gray-900 text-lg font-bold">
                             Savynce
                         </h3>
-                        <p className="text-sm mt-2 text-gray-700">
+                        <p className="text-sm mt-2 text-gray-600">
                             Smart price tracking. Simple savings.
                         </p>
                     </div>
                 </div>
 
                 {/* Bottom Line */}
-                <div className="border-t border-gray-800 mt-10 pt-6 text-center text-xs text-gray-600">
+                <div className="border-t border-gray-200 mt-10 pt-6 text-center text-xs text-gray-500">
                     © {new Date().getFullYear()} Savynce. All rights reserved.
                 </div>
 
