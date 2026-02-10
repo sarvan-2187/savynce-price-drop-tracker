@@ -19,16 +19,28 @@ import {
     ChevronUp,
 } from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function ProductCard({ product }) {
     const [showChart, setShowChart] = useState(false);
     const [deleting, setDeleting] = useState(false);
 
     const handleDelete = async () => {
-        if (!confirm("Remove this product from tracking?")) return;
+        if (!confirm("Remove this product from tracking?")) {
+            toast.message("Deletion cancelled.");
+            return;
+        }
 
         setDeleting(true);
-        await deleteProduct(product.id);
+        const result = await deleteProduct(product.id);
+
+        if (result?.error) {
+            toast.error(result.error);
+        } else {
+            toast.success("Product removed from tracking.");
+        }
+
+        setDeleting(false);
     };
 
     return (

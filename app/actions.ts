@@ -49,6 +49,19 @@ export async function addProduct(formData: FormData) {
 
     const isUpdate = !!existingProduct;
 
+    if (!isUpdate) {
+      const { data: userProducts, error: productsError } = await supabase
+        .from("products")
+        .select("id")
+        .eq("user_id", user.id);
+
+      if (productsError) throw productsError;
+
+      if ((userProducts?.length ?? 0) >= 3) {
+        return { error: "You can only track up to 3 products." };
+      }
+    }
+
     // Upsert product (insert or update based on user_id + url)
     const { data: product, error } = await supabase
       .from("products")

@@ -70,7 +70,9 @@ export default async function Home() {
             prices drop. Save money effortlessly.
           </p>
 
-          <AddProductForm user={user} />
+          {products.length < 3 && (
+            <AddProductForm user={user} productCount={products.length} />
+          )}
 
           {!user && products.length === 0 && (
             <div className="mt-8">
